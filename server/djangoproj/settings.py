@@ -12,10 +12,14 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 
 import os
 from pathlib import Path
+print(os.getcwd())
+
+from djangoproj.working_dirs import SERVER_DIRS
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
+# moved to working_dirs module
+# BASE_DIR = Path(__file__).resolve().parent.parent
 
 
 # Quick-start development settings - unsuitable for production
@@ -30,10 +34,12 @@ DEBUG = True
 
 ALLOWED_HOSTS = [
     'localhost',
-    'https://andrewdbritt-8000.theianext-0-labs-prod-misc-tools-us-east-0.proxy.cognitiveclass.ai'
+    'https://andrewdbritt-8000.theianext-0-labs-prod-misc-tools-us-east-0.proxy.cognitiveclass.ai',
+    'https://andrewdbritt-8000.theianext-1-labs-prod-misc-tools-us-east-0.proxy.cognitiveclass.ai'
 ]
 CSRF_TRUSTED_ORIGINS = [
-    'https://andrewdbritt-8000.theianext-0-labs-prod-misc-tools-us-east-0.proxy.cognitiveclass.ai'
+    'https://andrewdbritt-8000.theianext-0-labs-prod-misc-tools-us-east-0.proxy.cognitiveclass.ai',
+    'https://andrewdbritt-8000.theianext-1-labs-prod-misc-tools-us-east-0.proxy.cognitiveclass.ai'
 ]
 
 REST_FRAMEWORK = {
@@ -67,10 +73,9 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
-            os.path.join(
-                BASE_DIR,
-                'frontend/static'
-            )
+            SERVER_DIRS.FE_STATIC,
+            SERVER_DIRS.FE_BUILD,
+            SERVER_DIRS.FE_BUILD_STATIC
         ],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -93,7 +98,7 @@ WSGI_APPLICATION = 'djangoproj.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'NAME': SERVER_DIRS.BASE_DIR / 'db.sqlite3',
     }
 }
 
@@ -135,7 +140,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATIC_ROOT = os.path.join(SERVER_DIRS.BASE_DIR, 'static')
 MEDIA_ROOT = os.path.join(STATIC_ROOT, 'media')
 MEDIA_URL = '/media/'
 
@@ -145,9 +150,8 @@ MEDIA_URL = '/media/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 STATICFILES_DIRS = [
-    os.path.join(
-        BASE_DIR,
-        'frontend/static'
-    ),
+    SERVER_DIRS.FE_STATIC,
+    SERVER_DIRS.FE_BUILD,
+    SERVER_DIRS.FE_BUILD_STATIC
 ]
 
