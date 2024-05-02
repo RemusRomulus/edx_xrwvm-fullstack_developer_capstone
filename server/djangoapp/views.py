@@ -1,12 +1,14 @@
 # Uncomment the required imports before adding the code
+from enum import Enum
+from pprint import pformat
 
-# from django.shortcuts import render
-# from django.http import HttpResponseRedirect, HttpResponse
-# from django.contrib.auth.models import User
-# from django.shortcuts import get_object_or_404, render, redirect
-# from django.contrib.auth import logout
-# from django.contrib import messages
-# from datetime import datetime
+from django.shortcuts import render
+from django.http import HttpResponseRedirect, HttpResponse
+from django.contrib.auth.models import User
+from django.shortcuts import get_object_or_404, render, redirect
+from django.contrib.auth import logout
+from django.contrib import messages
+from datetime import datetime
 
 from django.http import JsonResponse
 from django.contrib.auth import login, authenticate
@@ -19,6 +21,9 @@ from django.views.decorators.csrf import csrf_exempt
 # Get an instance of a logger
 logger = logging.getLogger(__name__)
 
+
+class CONSTANTS(Enum):
+    REG_ERROR = -1
 
 # Create your views here.
 
@@ -39,13 +44,49 @@ def login_user(request):
     return JsonResponse(data)
 
 # Create a `logout_request` view to handle sign out request
-# def logout_request(request):
-# ...
+def logout_request(request):
+    logout(request)
+    data = {
+        'userName': ''
+    }
+    return JsonResponse(data)
 
 # Create a `registration` view to handle sign up request
-# @csrf_exempt
-# def registration(request):
-# ...
+@csrf_exempt
+def registration(request):
+    context = {}
+    data = json.loads(request.body)
+    username = data.get('userName', CONSTANTS.REG_ERROR)
+    password = data.get('password', CONSTANTS.REG_ERROR)
+    first_name = data.get('firstName', CONSTANTS.REG_ERROR)
+    last_name = data.get('lastName', CONSTANTS.REG_ERROR)
+    email = data.get('email', CONSTANTS.REG_ERROR)
+    username_exist = False
+    email_exist = False
+    if CONSTANTS.REG_ERROR in data.values():
+        data = {
+            'userName': CONSTANTS.REG_ERROR.value,
+            'error': 'Incomplete Registration Attempt'
+        }
+        logger.warning(f'Incorrect Registration Attempt: {pformat(data)}')
+        return JsonResponse(data)
+    try:
+        # Check if user already exists
+        User.objects.get(username=username)
+        username_exist = True
+    except:
+        # If not, simply log this is a new user
+        logger.debug("{} is new user".format(username))
+    # If it is a new user
+    if not username_exist:
+        # Create user in auth_user table
+        user = User.objects.create_user(username=username, first_name=first_name, last_name=last_name,password=password, email=email)
+        # Login the user and redirect to list page
+        login(request, user)
+        data = {"userName":username,"status":"Authenticated"}
+    else :
+        data = {"userName":username,"error":"Already Registered"}
+    return JsonResponse(data)
 
 # # Update the `get_dealerships` view to render the index page with
 # a list of dealerships
