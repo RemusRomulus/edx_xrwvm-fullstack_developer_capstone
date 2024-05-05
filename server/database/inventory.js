@@ -27,6 +27,10 @@ year: {
 mileage: {
     type: Number,
     required: true
+  },
+wheel_count: {
+    type: Number,
+    required: false
   }
 });
 

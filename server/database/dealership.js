@@ -3,11 +3,11 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const dealerships = new Schema({
-	id: {
+  id: {
     type: Number,
     required: true,
 	},
-	city: {
+  city: {
     type: String,
     required: true
   },
@@ -36,6 +36,10 @@ const dealerships = new Schema({
   },
   full_name: {
     type: String,
+    required: true
+  },
+  rating: {
+    type: Number,
     required: true
   }
 });

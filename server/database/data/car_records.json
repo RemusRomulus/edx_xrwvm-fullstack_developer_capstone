@@ -1421,7 +1421,8 @@
   "bodyType": "SUV",
   "year": 2022,
   "dealer_id": 23,
-  "mileage": 5000
+  "mileage": 5000,
+  "wheel_count": 4
 },
 {
   "make": "Mercedes",
@@ -1429,7 +1430,8 @@
   "bodyType": "Sedan",
   "year": 2021,
   "dealer_id": 30,
-  "mileage": 7000
+  "mileage": 7000,
+  "wheel_count": 4
 },
 {
   "make": "Toyota",
@@ -1437,7 +1439,8 @@
   "bodyType": "SUV",
   "year": 2020,
   "dealer_id": 39,
-  "mileage": 12000
+  "mileage": 12000,
+  "wheel_count": 4
 },
 {
   "make": "Nissan",
@@ -1445,7 +1448,8 @@
   "bodyType": "Sedan",
   "year": 2023,
   "dealer_id": 7,
-  "mileage": 20000
+  "mileage": 20000,
+  "wheel_count": 4
 },
 {
   "make": "Kia",
@@ -1453,7 +1457,8 @@
   "bodyType": "SUV",
   "year": 2022,
   "dealer_id": 17,
-  "mileage": 4000
+  "mileage": 4000,
+  "wheel_count": 4
 },
 {
   "make": "Audi",
@@ -1461,7 +1466,8 @@
   "bodyType": "Sedan",
   "year": 2021,
   "dealer_id": 24,
-  "mileage": 6000
+  "mileage": 6000,
+  "wheel_count": 4
 },
 {
   "make": "Mercedes",
@@ -1469,7 +1475,8 @@
   "bodyType": "SUV",
   "year": 2020,
   "dealer_id": 31,
-  "mileage": 9000
+  "mileage": 9000,
+  "wheel_count": 4
 },
 {
   "make": "Toyota",
@@ -1477,7 +1484,8 @@
   "bodyType": "Sedan",
   "year": 2023,
   "dealer_id": 40,
-  "mileage": 30000
+  "mileage": 30000,
+  "wheel_count": 4
 },
 {
   "make": "Nissan",
@@ -1485,7 +1493,8 @@
   "bodyType": "SUV",
   "year": 2022,
   "dealer_id": 8,
-  "mileage": 1500
+  "mileage": 1500,
+  "wheel_count": 4
 },
 {
   "make": "Kia",
@@ -1493,7 +1502,8 @@
   "bodyType": "SUV",
   "year": 2021,
   "dealer_id": 18,
-  "mileage": 18000
+  "mileage": 18000,
+  "wheel_count": 4
 },
 {
   "make": "Audi",
@@ -1501,7 +1511,8 @@
   "bodyType": "SUV",
   "year": 2020,
   "dealer_id": 25,
-  "mileage": 10000
+  "mileage": 10000,
+  "wheel_count": 4
 },
 {
   "make": "Mercedes",
@@ -1509,7 +1520,8 @@
   "bodyType": "SUV",
   "year": 2023,
   "dealer_id": 34,
-  "mileage": 22000
+  "mileage": 22000,
+  "wheel_count": 4
 },
 {
   "make": "Toyota",
@@ -1517,7 +1529,8 @@
   "bodyType": "Sedan",
   "year": 2022,
   "dealer_id": 47,
-  "mileage": 8000
+  "mileage": 8000,
+  "wheel_count": 4
 },
 {
   "make": "Nissan",
@@ -1525,7 +1538,8 @@
   "bodyType": "SUV",
   "year": 2021,
   "dealer_id": 9,
-  "mileage": 18000
+  "mileage": 18000,
+  "wheel_count": 4
 },
 {
   "make": "Kia",
@@ -1533,7 +1547,8 @@
   "bodyType": "Sedan",
   "year": 2020,
   "dealer_id": 19,
-  "mileage": 12000
+  "mileage": 12000,
+  "wheel_count": 4
 },
 {
   "make": "Audi",
@@ -1541,7 +1556,8 @@
   "bodyType": "Coupe",
   "year": 2023,
   "dealer_id": 26,
-  "mileage": 6000
+  "mileage": 6000,
+  "wheel_count": 4
 },
 {
   "make": "Mercedes",
@@ -1549,7 +1565,8 @@
   "bodyType": "Sedan",
   "year": 2022,
   "dealer_id": 35,
-  "mileage": 9000
+  "mileage": 9000,
+  "wheel_count": 4
 },
 {
   "make": "Toyota",
@@ -1557,7 +1574,8 @@
   "bodyType": "Minivan",
   "year": 2021,
   "dealer_id": 44,
-  "mileage": 30000
+  "mileage": 30000,
+  "wheel_count": 4
 },
 {
   "make": "Nissan",
@@ -1565,7 +1583,8 @@
   "bodyType": "Sedan",
   "year": 2020,
   "dealer_id": 10,
-  "mileage": 15000
+  "mileage": 15000,
+  "wheel_count": 4
 },
 {
   "make": "Kia",
@@ -1573,7 +1592,8 @@
   "bodyType": "SUV",
   "year": 2023,
   "dealer_id": 20,
-  "mileage": 12000
+  "mileage": 12000,
+  "wheel_count": 4
 },
 {
   "make": "Audi",
@@ -1581,7 +1601,8 @@
   "bodyType": "Hatchback",
   "year": 2022,
   "dealer_id": 27,
-  "mileage": 8000
+  "mileage": 8000,
+  "wheel_count": 4
 },
 {
   "make": "Mercedes",
@@ -1589,7 +1610,8 @@
   "bodyType": "Sedan",
   "year": 2021,
   "dealer_id": 36,
-  "mileage": 3000
+  "mileage": 3000,
+  "wheel_count": 4
 },
 {
   "make": "Toyota",
@@ -1597,7 +1619,8 @@
   "bodyType": "SUV",
   "year": 2020,
   "dealer_id": 43,
-  "mileage": 25000
+  "mileage": 25000,
+  "wheel_count": 4
 },
 {
   "make": "Nissan",
@@ -1605,7 +1628,8 @@
   "bodyType": "Sedan",
   "year": 2023,
   "dealer_id": 11,
-  "mileage": 10000
+  "mileage": 10000,
+  "wheel_count": 4
 },
 {
   "make": "Kia",
@@ -1613,7 +1637,8 @@
   "bodyType": "Sedan",
   "year": 2022,
   "dealer_id": 21,
-  "mileage": 15000
+  "mileage": 15000,
+  "wheel_count": 4
 },
 {
   "make": "Audi",
@@ -1621,7 +1646,8 @@
   "bodyType": "SUV",
   "year": 2021,
   "dealer_id": 28,
-  "mileage": 5000
+  "mileage": 5000,
+  "wheel_count": 4
 },
 {
   "make": "Mercedes",
@@ -1629,7 +1655,8 @@
   "bodyType": "SUV",
   "year": 2020,
   "dealer_id": 37,
-  "mileage": 7000
+  "mileage": 7000,
+  "wheel_count": 4
 },
 {
   "make": "Toyota",
@@ -1637,7 +1664,8 @@
   "bodyType": "Hatchback",
   "year": 2023,
   "dealer_id": 46,
-  "mileage": 12000
+  "mileage": 12000,
+  "wheel_count": 4
 },
 {
   "make": "Nissan",
@@ -1645,7 +1673,8 @@
   "bodyType": "Hatchback",
   "year": 2022,
   "dealer_id": 13,
-  "mileage": 20000
+  "mileage": 20000,
+  "wheel_count": 4
 },
 {
   "make": "Kia",
@@ -1653,7 +1682,8 @@
   "bodyType": "Sedan",
   "year": 2021,
   "dealer_id": 22,
-  "mileage": 4000
+  "mileage": 4000,
+  "wheel_count": 4
 },
 {
   "make": "Audi",
@@ -1661,7 +1691,8 @@
   "bodyType": "Convertible",
   "year": 2020,
   "dealer_id": 29,
-  "mileage": 6000
+  "mileage": 6000,
+  "wheel_count": 3
 },
 {
   "make": "Mercedes",
@@ -1669,7 +1700,8 @@
   "bodyType": "SUV",
   "year": 2023,
   "dealer_id": 38,
-  "mileage": 9000
+  "mileage": 9000,
+  "wheel_count": 1
 },
 {
   "make": "Toyota",
@@ -1677,7 +1709,8 @@
   "bodyType": "SUV",
   "year": 2022,
   "dealer_id": 47,
-  "mileage": 30000
+  "mileage": 30000,
+  "wheel_count": 9
 },
 {
   "make": "Nissan",
@@ -1685,7 +1718,8 @@
   "bodyType": "SUV",
   "year": 2021,
   "dealer_id": 14,
-  "mileage": 1500
+  "mileage": 1500,
+  "wheel_count": 3
 },
 {
   "make": "Kia",
@@ -1693,7 +1727,8 @@
   "bodyType": "Hatchback",
   "year": 2020,
   "dealer_id": 23,
-  "mileage": 18000
+  "mileage": 18000,
+  "wheel_count": 4
 },
 {
   "make": "Audi",
@@ -1701,14 +1736,16 @@
   "bodyType": "Convertible",
   "year": 2023,
   "dealer_id": 30,
-  "mileage": 10000
+  "mileage": 10000,
+  "wheel_count": 4
 },
 {
-  "make": "Mercedes",
-  "model": "CLA",
-  "bodyType": "Sedan",
-  "year": 2022,
-  "dealer_id": 39,
-  "mileage": 22000
+    "make": "Jabroni",
+    "model": "SUX2000",
+    "bodyType": "Gremlin",
+    "year": 1874,
+    "dealer_id": 51,
+    "mileage": 83974,
+    "wheel_count": 5
 }
 ]}
