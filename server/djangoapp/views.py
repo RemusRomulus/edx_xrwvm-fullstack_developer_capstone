@@ -15,6 +15,9 @@ from django.contrib.auth import login, authenticate
 import logging
 import json
 from django.views.decorators.csrf import csrf_exempt
+
+# Import Models
+from .models import CarMake, CarModel
 # from .populate import initiate
 
 
@@ -87,6 +90,8 @@ def registration(request):
     else :
         data = {"userName":username,"error":"Already Registered"}
     return JsonResponse(data)
+
+def get_cars(request):
 
 # # Update the `get_dealerships` view to render the index page with
 # a list of dealerships
