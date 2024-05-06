@@ -24,7 +24,7 @@ class CarMake(models.Model):
     ) 
 
     def __str__(self):
-        return f'{self.name}({self.id}) - {self.description[:10]}'
+        return f'{self.name}'
 
 
 # <HINT> Create a Car Model model `class CarModel(models.Model):`:
@@ -64,3 +64,6 @@ class CarModel(models.Model):
             MinValueValidator(1)
         ]
     )
+
+    def __str__(self):
+        return f'{self.car_make.name} - {self.name}'

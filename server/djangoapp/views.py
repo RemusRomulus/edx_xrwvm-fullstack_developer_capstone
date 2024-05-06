@@ -18,7 +18,7 @@ from django.views.decorators.csrf import csrf_exempt
 
 # Import Models
 from .models import CarMake, CarModel
-# from .populate import initiate
+from .populate import initiate
 
 
 # Get an instance of a logger
@@ -92,7 +92,25 @@ def registration(request):
     return JsonResponse(data)
 
 def get_cars(request):
+    logger.info('visiting get_cars')
+    count = CarMake.objects.filter().count()
+    logger.info(count)
 
+    if count == 0:
+        initiate()
+    car_models = CarModel.objects.select_related('car_make')
+    cars = []
+    for car_models in car_models:
+        cars.append(
+            {
+                'CarModel': car_model.name,
+                'CarMake': car_model.car_make.name
+            }
+        )
+    
+    return JsonResponse(
+        {'CarModels': cars}
+    )
 # # Update the `get_dealerships` view to render the index page with
 # a list of dealerships
 # def get_dealerships(request):
