@@ -20,6 +20,9 @@ from django.views.decorators.csrf import csrf_exempt
 from .models import CarMake, CarModel
 from .populate import initiate
 
+# Import RESTAPIs
+from .restapis import get_request, analyze_review_sentiments, post_review
+
 
 # Get an instance of a logger
 logger = logging.getLogger(__name__)
@@ -27,6 +30,9 @@ logger = logging.getLogger(__name__)
 
 class CONSTANTS(Enum):
     REG_ERROR = -1
+    SUCCESS = 200
+    BAD_REQUEST = 400
+    UNAUTHORIZED = 403
 
 # Create your views here.
 
@@ -121,7 +127,7 @@ def get_dealerships(request, state="ALL"):
     dealerships = get_request(endpoint)
     return JsonResponse(
         {
-            'status': 200,
+            'status': CONSTANTS.SUCCESS,
             'dealers': dealerships
         }
     )
@@ -129,7 +135,7 @@ def get_dealerships(request, state="ALL"):
 # Create a `get_dealer_reviews` view to render the reviews of a dealer
 def get_dealer_reviews(request,dealer_id):
     if (dealer_id):
-        endpoint = f'/fetchDealerReviews/{str(dealer_id)}'
+        endpoint = f'/fetchReviews/dealer/{str(dealer_id)}'
         reviews = get_request(endpoint)
         for review in reviews:
             response = analyze_review_sentiments(review_detail.get('review'))
@@ -137,18 +143,17 @@ def get_dealer_reviews(request,dealer_id):
             review_detail['sentiment'] = response['sentiment']
         return JsonResponse(
             {
-                'status': 200,
+                'status': CONSTANTS.SUCCESS,
                 'review': reviews
             }
         )
     else:
         return JsonResponse(
             {
-                'status': 400,
-                'message': 'Bad Request'
+                'status': CONSTANTS.BAD_REQUEST,
+                'message': CONSTANTS.BAD_REQUEST.value
             }
         ) 
-
 
 # Create a `get_dealer_details` view to render the dealer details
 def get_dealer_details(request, dealer_id):
@@ -157,18 +162,78 @@ def get_dealer_details(request, dealer_id):
         dealership = get_request(endpoint)
         return JsonResponse(
             {
-                'status': 200,
+                'status': CONSTANTS.SUCCESS,
                 'dealer': dealership
             }
         )
     else:
         return JsonResponse(
             {
-                'status': 400,
-                'message': 'Bad Request'
+                'status': CONSTANTS.BAD_REQUEST,
+                'message': CONSTANTS.BAD_REQUEST.value
+            }
+        )
+
+# Get Dealers by Rating
+def get_dealers_by_rating(request, rating):
+    if (rating):
+        endpoint = f'/fetchDealers/rating/{str(rating)}'
+        dealers = get_request(endpoint)
+        for rating_detail in dealers:
+            response = analyze_review_sentiments(rating_detail['rating'])
+            print(response)
+            rating_detail['sentiment'] = f'This dealer has a {response['sentiment']} review'
+        return JsonResponse(
+            {
+                'status': CONSTANTS.SUCCESS,
+                'dealers': dealers
+            }
+        )
+    else:
+        return JsonResponse(
+            {
+                'status': CONSTANTS.BAD_REQUEST,
+                'message': CONSTANTS.BAD_REQUEST.value
+            }
+        )
+
+def get_dealers_by_rating_state(request, rating, state):
+    if (rating and state):
+        endpoint = f'/fetchDealers/rating/{str(rating)}/location/{state}'
+        dealers = get_request(endpoint)
+        for rating_detail in dealers:
+            response = analyze_review_sentiments(rating_detail['rating'])
+            print(response)
+            rating_detail['sentiment'] = f'This dealer has a {response['sentiment']} review'
+        return JsonResponse(
+            {
+                'status': CONSTANTS.SUCCESS,
+                'dealers': dealers
+            }
+        )
+    else:
+        return JsonResponse(
+            {
+                'status': CONSTANTS.BAD_REQUEST,
+                'message': CONSTANTS.BAD_REQUEST.value
             }
         )
 
 # Create a `add_review` view to submit a review
 def add_review(request):
-   pass 
+    OUT = {'status': CONSTANTS.REG_ERROR}
+    if(request.user.is_anonymous == False):
+        data = json.loads(request.body)
+        try:
+            response.post_review(data)
+            OUT['status'] = CONSTANTS.SUCCESS
+            OUT['message'] = f'::SUCCESS:: Posted: {data}'
+            return JsonResponse(OUT)
+        except Exception as err:
+            OUT['status'] = CONSTANTS.BAD_REQUEST
+            OUT['message'] = f'::ERROR:: Error in Posting Review: {data}'
+            return JsonResponse(OUT)
+    else:
+        OUT['status'] = CONSTANTS.UNAUTHORIZED
+        OUT['message'] = CONSTANTS.UNAUTHORIZED.value
+        return JsonResponse(OUT)
