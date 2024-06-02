@@ -144,7 +144,7 @@ def _make_fake_description(seed_number=0, car_name=''):
     elif style == 1:
         OUT = f'This car has a {choice(car_parts)} that is {choice(adjectives)} and everyone says the {car_name} is {choice(adjectives)}'
     else:
-        OUT = f'Everyone {choice(['hates', 'loves'])} the {choice(car_parts)} that {car_name} makes. The {choice(adjectives)} parts are {choice(car_parts)}, {choice(car_parts)}, and {choice(car_parts)}--and the {choice(car_parts)} is {choice(adjectives)}.'
+        OUT = f'Everyone {choice(["hates", "loves"])} the {choice(car_parts)} that {car_name} makes. The {choice(adjectives)} parts are {choice(car_parts)}, {choice(car_parts)}, and {choice(car_parts)}--and the {choice(car_parts)} is {choice(adjectives)}.'
 
     print(OUT)
     return OUT
@@ -190,13 +190,16 @@ def initiate():
 
     car_make_instances = []
     for data in car_make_data:
-        car_make_instances.append(
-            CarMake.objects.create(
-                name=data['name'],
-                description=data['description'],
-                mfgr=data['mfgr']
+        try:
+            car_make_instances.append(
+                CarMake.objects.create(
+                    name=data['name'],
+                    description=data['description'],
+                    mfgr=data['mfgr']
+                )
             )
-        )
+        except Exception as err:
+            print(err)
 
     # Create CarModel instances with the corresponding CarMake instances
     car_model_data = [

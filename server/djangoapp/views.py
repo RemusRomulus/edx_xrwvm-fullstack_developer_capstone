@@ -119,15 +119,15 @@ def get_cars(request):
     )
 # # Update the `get_dealerships` view to render the index page with
 # a list of dealerships
-def get_dealerships(request, state="ALL"):
-    if(state == 'ALL'):
-        endpoint = '/fetchDealers'
-    else:
-        endpoit = f'/featchDealers/{state}'
+def get_dealerships(request, state=None):
+    print(state)
+    endpoint = '/fetchDealers'
+    if state:
+        endpoint = f'/fetchDealers/{state}'
     dealerships = get_request(endpoint)
     return JsonResponse(
         {
-            'status': CONSTANTS.SUCCESS,
+            'status': CONSTANTS.SUCCESS.value,
             'dealers': dealerships
         }
     )
@@ -157,6 +157,8 @@ def get_dealer_reviews(request,dealer_id):
 
 # Create a `get_dealer_details` view to render the dealer details
 def get_dealer_details(request, dealer_id):
+    print('Get Dealer Details by ID')
+    print(dealer_id)
     if (dealer_id):
         endpoint = f'/fetchDealer/{str(dealer_id)}'
         dealership = get_request(endpoint)
@@ -177,12 +179,12 @@ def get_dealer_details(request, dealer_id):
 # Get Dealers by Rating
 def get_dealers_by_rating(request, rating):
     if (rating):
-        endpoint = f'/fetchDealers/rating/{str(rating)}'
+        endpoint = f'/fetchDealers/rating/{rating}'
         dealers = get_request(endpoint)
         for rating_detail in dealers:
             response = analyze_review_sentiments(rating_detail['rating'])
             print(response)
-            rating_detail['sentiment'] = f'This dealer has a {response['sentiment']} review'
+            rating_detail['sentiment'] = f'This dealer has a {response["sentiment"]} review'
         return JsonResponse(
             {
                 'status': CONSTANTS.SUCCESS,
@@ -204,7 +206,7 @@ def get_dealers_by_rating_state(request, rating, state):
         for rating_detail in dealers:
             response = analyze_review_sentiments(rating_detail['rating'])
             print(response)
-            rating_detail['sentiment'] = f'This dealer has a {response['sentiment']} review'
+            rating_detail['sentiment'] = f'This dealer has a {response["sentiment"]} review'
         return JsonResponse(
             {
                 'status': CONSTANTS.SUCCESS,
