@@ -18,6 +18,10 @@
 ## Run Server
 * `python3 manage.py runserver`
 
+## Update Settings.py
+* Check URL of application
+* Make sure it's added to `ALLOWED_HOSTS` and `CSRF_TRUSTED_ORIGINS` in `settings.py`
+
 ## Populate Data
 * in new shell
 * from root directory: `cd edx_xrwvm-fullstack_developer_capstone/server`
