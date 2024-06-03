@@ -19,6 +19,9 @@
 * `python3 manage.py runserver`
 
 ## Populate Data
+* in new shell
+* from root directory: `cd edx_xrwvm-fullstack_developer_capstone/server`
+* `source djangoenv/bin/activate`
 * `python3 manage.py shell`
 * `from dhangoproj import populate`
 * `populate.initiate()`

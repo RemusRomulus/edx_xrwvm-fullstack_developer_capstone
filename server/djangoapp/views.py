@@ -138,20 +138,20 @@ def get_dealer_reviews(request,dealer_id):
         endpoint = f'/fetchReviews/dealer/{str(dealer_id)}'
         reviews = get_request(endpoint)
         for review in reviews:
-            response = analyze_review_sentiments(review_detail.get('review'))
+            response = analyze_review_sentiments(review.get('review'))
             print(response)
-            review_detail['sentiment'] = response['sentiment']
+            review['sentiment'] = response['sentiment']
         return JsonResponse(
             {
-                'status': CONSTANTS.SUCCESS,
+                'status': CONSTANTS.SUCCESS.value,
                 'review': reviews
             }
         )
     else:
         return JsonResponse(
             {
-                'status': CONSTANTS.BAD_REQUEST,
-                'message': CONSTANTS.BAD_REQUEST.value
+                'status': CONSTANTS.BAD_REQUEST.value,
+                'message': CONSTANTS.BAD_REQUEST.name
             }
         ) 
 
@@ -162,17 +162,31 @@ def get_dealer_details(request, dealer_id):
     if (dealer_id):
         endpoint = f'/fetchDealer/{str(dealer_id)}'
         dealership = get_request(endpoint)
+        review_endpoint = f'/fetchReviews/dealer/{str(dealer_id)}'
+        reviews = get_request(review_endpoint)
+        for review in reviews:
+            response = analyze_review_sentiments(review.get('review'))
+            review['sentiment'] = response['sentiment']
+            review['sentiment'] = positive
+            review['id'] = 4
+            review['name'] = 'Gerald Jerblonski'
+            review['car_make'] = 'Nissan'
+            review['car_model'] = 'Casparian Velmar Mk 35'
+            review['car_year'] = '2105'
+        print(dealership)
+        print(f'Reviews: {reviews}')
         return JsonResponse(
             {
-                'status': CONSTANTS.SUCCESS,
-                'dealer': dealership
+                'status': CONSTANTS.SUCCESS.value,
+                'dealer': dealership,
+                'review': reviews
             }
         )
     else:
         return JsonResponse(
             {
-                'status': CONSTANTS.BAD_REQUEST,
-                'message': CONSTANTS.BAD_REQUEST.value
+                'status': CONSTANTS.BAD_REQUEST.value,
+                'message': CONSTANTS.BAD_REQUEST.name
             }
         )
 
@@ -187,15 +201,15 @@ def get_dealers_by_rating(request, rating):
             rating_detail['sentiment'] = f'This dealer has a {response["sentiment"]} review'
         return JsonResponse(
             {
-                'status': CONSTANTS.SUCCESS,
+                'status': CONSTANTS.SUCCESS.value,
                 'dealers': dealers
             }
         )
     else:
         return JsonResponse(
             {
-                'status': CONSTANTS.BAD_REQUEST,
-                'message': CONSTANTS.BAD_REQUEST.value
+                'status': CONSTANTS.BAD_REQUEST.value,
+                'message': CONSTANTS.BAD_REQUEST.name
             }
         )
 
@@ -209,33 +223,33 @@ def get_dealers_by_rating_state(request, rating, state):
             rating_detail['sentiment'] = f'This dealer has a {response["sentiment"]} review'
         return JsonResponse(
             {
-                'status': CONSTANTS.SUCCESS,
+                'status': CONSTANTS.SUCCESS.value,
                 'dealers': dealers
             }
         )
     else:
         return JsonResponse(
             {
-                'status': CONSTANTS.BAD_REQUEST,
-                'message': CONSTANTS.BAD_REQUEST.value
+                'status': CONSTANTS.BAD_REQUEST.value,
+                'message': CONSTANTS.BAD_REQUEST.name
             }
         )
 
 # Create a `add_review` view to submit a review
 def add_review(request):
-    OUT = {'status': CONSTANTS.REG_ERROR}
+    OUT = {'status': CONSTANTS.REG_ERROR.value}
     if(request.user.is_anonymous == False):
         data = json.loads(request.body)
         try:
             response.post_review(data)
-            OUT['status'] = CONSTANTS.SUCCESS
+            OUT['status'] = CONSTANTS.SUCCESS.value
             OUT['message'] = f'::SUCCESS:: Posted: {data}'
             return JsonResponse(OUT)
         except Exception as err:
-            OUT['status'] = CONSTANTS.BAD_REQUEST
+            OUT['status'] = CONSTANTS.BAD_REQUEST.value
             OUT['message'] = f'::ERROR:: Error in Posting Review: {data}'
             return JsonResponse(OUT)
     else:
-        OUT['status'] = CONSTANTS.UNAUTHORIZED
-        OUT['message'] = CONSTANTS.UNAUTHORIZED.value
+        OUT['status'] = CONSTANTS.UNAUTHORIZED.value
+        OUT['message'] = CONSTANTS.UNAUTHORIZED.name
         return JsonResponse(OUT)
