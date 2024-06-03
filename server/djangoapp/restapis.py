@@ -34,7 +34,7 @@ def analyze_review_sentiments(text):
     try:
         response = requests.get(request_url)
         return response.json()
-    except Excception as err:
+    except Exception as err:
         print(f'::ERROR:: Unexpected {err=}, {type(err)=}')
         print('Network Exception Occurred')
 

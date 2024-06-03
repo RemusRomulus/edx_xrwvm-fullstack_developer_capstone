@@ -167,19 +167,15 @@ def get_dealer_details(request, dealer_id):
         for review in reviews:
             response = analyze_review_sentiments(review.get('review'))
             review['sentiment'] = response['sentiment']
-            review['sentiment'] = positive
-            review['id'] = 4
-            review['name'] = 'Gerald Jerblonski'
-            review['car_make'] = 'Nissan'
-            review['car_model'] = 'Casparian Velmar Mk 35'
-            review['car_year'] = '2105'
+
         print(dealership)
         print(f'Reviews: {reviews}')
         return JsonResponse(
             {
                 'status': CONSTANTS.SUCCESS.value,
                 'dealer': dealership,
-                'review': reviews
+                'reviews': reviews,
+                'unreviewed': False if len(reviews) > 0 else True
             }
         )
     else:
