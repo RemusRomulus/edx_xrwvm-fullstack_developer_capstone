@@ -23,7 +23,7 @@
 * from root directory: `cd edx_xrwvm-fullstack_developer_capstone/server`
 * `source djangoenv/bin/activate`
 * `python3 manage.py shell`
-* `from dhangoproj import populate`
+* `from djanagoapp import populate`
 * `populate.initiate()`
 
 # Building Frontend
@@ -54,4 +54,4 @@
 * Open djangoapp/.env and replace your code engine deployment url with the deployment URL you obtained above.
   * It is essential to include the / at the end of the URL. Please ensure that it is copied
   * `sentiment_analyzer_url=your code engine deployment url`
-.
+* Get the URL for the sentiment analyzer app: `ibmcloud ce application list`
