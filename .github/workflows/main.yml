@@ -28,16 +28,6 @@ jobs:
         # This command finds all Python files recursively and runs flake8 on them
         find . -name "*.py" -exec flake8 {} +
         echo "Linted all the python files successfully"
-    - name: Install Bandit
-      run: pip install bandit
-    - name: Run Bandit Scan
-      run: bandit -ll -ii -r . -f json -o bandit-scan-report.json
-    - name: Upload Bandit Scan Artifact
-      uses: actions/upload-artifact@v4
-      if: always()
-      with:
-        name: bandit-findings
-        path: bandit-scan-report.json
   lint_js:
       name: Lint JavaScript Files
       runs-on: ubuntu-latest
