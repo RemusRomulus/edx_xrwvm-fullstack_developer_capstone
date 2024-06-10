@@ -106,7 +106,7 @@ def get_cars(request):
         initiate()
     car_models = CarModel.objects.select_related('car_make')
     cars = []
-    for car_models in car_models:
+    for car_model in car_models:
         cars.append(
             {
                 'CarModel': car_model.name,
@@ -234,13 +234,16 @@ def get_dealers_by_rating_state(request, rating, state):
 
 # Create a `add_review` view to submit a review
 def add_review(request):
+    print('ADDING a REVIEW')
     OUT = {'status': CONSTANTS.REG_ERROR.value}
     if(request.user.is_anonymous == False):
         data = json.loads(request.body)
+        print(f'Request Body\n{data}')
         try:
-            response.post_review(data)
+            response = post_review(data)
             OUT['status'] = CONSTANTS.SUCCESS.value
-            OUT['message'] = f'::SUCCESS:: Posted: {data}'
+            OUT['message'] = f'::SUCCESS:: Posted: {data}. ::RESPONSE:: {response}'
+            print(pformat(OUT))
             return JsonResponse(OUT)
         except Exception as err:
             OUT['status'] = CONSTANTS.BAD_REQUEST.value
