@@ -16,6 +16,7 @@
   },
   "jshintConfig": {
     "esversion": "8",
-    "asi": true
+    "asi": true,
+    "sub": true
   }
 }
