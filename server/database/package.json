@@ -15,6 +15,7 @@
     "mongoose": "^8.0.1"
   },
   "jshintConfig": {
-    "esversion": "8"
+    "esversion": "8",
+    "asi": true
   }
 }
