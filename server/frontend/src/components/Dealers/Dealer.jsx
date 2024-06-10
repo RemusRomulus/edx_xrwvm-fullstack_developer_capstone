@@ -72,10 +72,14 @@ return(
       <Header/>
       <div style={{marginTop:"10px"}}>
       <h1 style={{color:"grey"}}>{dealer.full_name}{postReview}</h1>
-      <h4  style={{color:"grey"}}>{dealer['city']},{dealer['address']}, Zip - {dealer['zip']}, {dealer['state']} </h4>
+      <h2 style={{color:"grey"}}>Dealer Rating: {dealer['rating']}</h2>
+      <h3 style={{color:"grey"}}>{dealer['address']}</h3>
+      <h4 style={{color:"grey"}}>{dealer['city']}, {dealer['state']}</h4>
+      <h4 style={{color:"grey"}}>{dealer['zip']}</h4>
       </div>
       <div class="reviews_panel">
-      {reviews.length === 0 && unreviewed === false ? (
+      {
+      reviews.length === 0 && unreviewed === false ? (
         <text>Loading Reviews....</text>
       ):  unreviewed === true? <div>No reviews yet! </div> :
       reviews.map(review => (
