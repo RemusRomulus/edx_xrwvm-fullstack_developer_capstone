@@ -59,3 +59,7 @@
   * It is essential to include the / at the end of the URL. Please ensure that it is copied
   * `sentiment_analyzer_url=your code engine deployment url`
 * Get the URL for the sentiment analyzer app: `ibmcloud ce application list`
+
+# Setting a Cleaner Prompt
+* export PS1="\e[1;34m\$ \e[1;31m\! \e[4;32m\W>\e[0m"
+  * Reference: https://phoenixnap.com/kb/change-bash-prompt-linux
