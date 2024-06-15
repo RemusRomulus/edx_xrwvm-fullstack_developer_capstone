@@ -46,7 +46,7 @@
   * In "Cloud" tab, select "Code Engine"
   * Select the "Create Project" button
     * Code Engine will take time in "Preparing"
-    * Once prepated, press "Code Engine CLI"
+    * Once prepared, press "Code Engine CLI"
 
 ## Microservice Setup
 * from root directory: `cd edx_xrwvm-fullstack_developer_capstone/server/djangoapp/microservices`
@@ -61,5 +61,5 @@
 * Get the URL for the sentiment analyzer app: `ibmcloud ce application list`
 
 # Setting a Cleaner Prompt
-* export PS1="\e[1;34m\$ \e[1;31m\! \e[4;32m\W>\e[0m"
+* `export PS1="\e[1;34m\$ \e[1;31m\! \e[4;32m\W>\e[0m"`
   * Reference: https://phoenixnap.com/kb/change-bash-prompt-linux
